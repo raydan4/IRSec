@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # If not root, break and require root
 if [ `whoami` != root ]; then
@@ -10,6 +10,9 @@ fi
 iptables -F
 
 ### Firewall rules ###
+
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A OUTPUT -p icmp -j ACCEPT
 
 #____SERVER RULES
 #___Web___
@@ -28,6 +31,10 @@ iptables -A OUTPUT -o lo -j ACCEPT
 
 
 #____Client Rules____
+
+#__SQL__
+iptables -A INPUT -p TCP --sport 1433 -j ACCEPT
+iptables -A OUTPUT -p TCP --dport 1433 -j ACCEPT
 
 #__Web__
 iptables -A INPUT -p TCP --sport 80 -j ACCEPT
