@@ -9,4 +9,4 @@ echo "TraceEnable off" >> $c
 echo "Header always append X-Frame-Options SAMEORIGIN" >> $c
 echo "Header set  X-XXS-Protection \"1; mode=block\"" >> $c
 a2enmod head*
-service Apache restart
+service apache2 restart
